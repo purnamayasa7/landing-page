@@ -1,336 +1,1749 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Corpu Digital Kabupaten Buleleng</title>
+
+    <meta name="description"
+        content="Corpu Digital Kabupaten Buleleng - Platform terintegrasi pengembangan kompetensi ASN melalui Corporate University.">
 
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/purnamayasa7/Images/main/KabBuleleng.png">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: [
+                            'Inter',
+                            'ui-sans-serif',
+                            'system-ui',
+                            'sans-serif'
+                        ],
+                    },
+
+                    colors: {
+                        corpu: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    },
+
+                    boxShadow: {
+                        soft: '0 10px 40px rgba(15, 23, 42, 0.08)',
+                        card: '0 20px 60px rgba(15, 23, 42, 0.10)',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        body {
+        html {
             scroll-behavior: smooth;
         }
 
-        /* HERO */
-        header.hero {
-            min-height: 75vh;
-            background:
-                /* linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), */
-                url('https://raw.githubusercontent.com/purnamayasa7/Images/main/Corpu4.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            align-items: center;
-        }
-
-        /* FEATURE ICON */
-        .feature-icon {
-            width: 4rem;
-            height: 4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* NAVBAR */
-        html {
-            scroll-behavior: auto;
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+            background: #ffffff;
         }
 
         section {
             scroll-margin-top: 90px;
         }
 
-        .navbar-corpu {
-            background: rgba(255, 255, 255, 0.95);
-            transition: all 0.3s ease;
-            padding: 5px 0;
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        #navbar {
+            transition:
+                background-color 0.3s ease,
+                box-shadow 0.3s ease,
+                backdrop-filter 0.3s ease,
+                padding 0.3s ease;
         }
 
-        .navbar-corpu.scrolled {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        #navbar.scrolled {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
         }
-
-        .logo {
-            width: 40px;
-        }
-
-        .brand-text {
-            font-weight: 700;
-            font-size: 18px;
-            color: #212529;
-        }
-
-        .brand-subtext {
-            font-size: 12px;
-            font-weight: 600;
-            color: #fe7b24;
-            margin-top: 5px;
-            line-height:1;
-        }
-
-        .gradient-text {
-
-            background: linear-gradient(90deg,
-                    #0a58ca,
-                    #0d6efd,
-                    #6ea8fe);
-
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-
-            background-clip: text;
-
-            color: transparent;
-
-        }
-
 
         .nav-link {
-            color: #212529 !important;
-            font-size: 16px;
-            font-weight: 500;
-            margin-left: 15px;
             position: relative;
-            transition: all 0.3s ease;
+            transition: color 0.25s ease;
         }
 
         .nav-link::after {
             content: "";
             position: absolute;
+            left: 50%;
+            bottom: -7px;
             width: 0;
             height: 2px;
-            background: #0d6efd;
-            left: 0;
-            bottom: -5px;
-            transition: 0.3s;
+            border-radius: 999px;
+            background: linear-gradient(90deg,
+                    #2563eb,
+                    #7c3aed);
+            transform: translateX(-50%);
+            transition: width 0.25s ease;
         }
 
-        .nav-link:hover::after {
-            width: 100%;
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 22px;
         }
 
         .nav-link.active {
-            color: #0d6efd !important;
+            color: #2563eb;
         }
 
-        .nav-link.active::after {
-            width: 100%;
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero {
+            position: relative;
+            min-height: 92vh;
+            background-image:
+                linear-gradient(115deg,
+                    rgba(2, 6, 23, 0.86),
+                    rgba(15, 23, 42, 0.62),
+                    rgba(30, 64, 175, 0.45)),
+                url('https://raw.githubusercontent.com/purnamayasa7/Images/main/Corpu4.jpg');
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        /* FOOTER */
-        footer {
-            font-size: .9rem;
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 75% 25%,
+                    rgba(59, 130, 246, 0.28),
+                    transparent 32%),
+                radial-gradient(circle at 20% 80%,
+                    rgba(124, 58, 237, 0.18),
+                    transparent 30%);
+            pointer-events: none;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg,
+                    #60a5fa,
+                    #93c5fd,
+                    #c4b5fd);
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-grid {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px,
+                    transparent 1px),
+                linear-gradient(90deg,
+                    rgba(255, 255, 255, 0.035) 1px,
+                    transparent 1px);
+
+            background-size: 50px 50px;
+        }
+
+        /* ================================
+           FLOATING ELEMENT
+        ================================= */
+
+        .floating-card {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* ================================
+           CARD HOVER
+        ================================= */
+
+        .service-card {
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow:
+                0 25px 60px rgba(15, 23, 42, 0.12);
+            border-color: rgba(59, 130, 246, 0.25);
+        }
+
+        /* ================================
+           ICON
+        ================================= */
+
+        .icon-box {
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .service-card:hover .icon-box {
+            transform: scale(1.08);
+            box-shadow:
+                0 12px 30px rgba(37, 99, 235, 0.22);
+        }
+
+        /* ================================
+           MOBILE MENU
+        ================================= */
+
+        #mobileMenu {
+            transition:
+                max-height 0.35s ease,
+                opacity 0.25s ease;
+        }
+
+        /* ================================
+           SCROLL REVEAL
+        ================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================================
+           FORM
+        ================================= */
+
+        .form-input {
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow:
+                0 0 0 4px rgba(59, 130, 246, 0.10);
         }
     </style>
 </head>
 
-<body>
+<body class="text-slate-800 antialiased">
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-corpu">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#home">
-                <img src="https://raw.githubusercontent.com/purnamayasa7/Images/main/KabBuleleng.png" class="logo me-2">
-                <div class="d-flex flex-column">
-                    <span class="brand-subtext">Pemerintah Kabupaten Buleleng</span>
-                    <span class="brand-text">Sistem Informasi CORPU Digital</span>
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-white/95 lg:bg-white/90">
+        <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
+            <div class="flex h-[76px] items-center justify-between">
+
+                <!-- BRAND -->
+
+                <a href="#home" class="flex items-center gap-3">
+
+                    <img src="https://raw.githubusercontent.com/purnamayasa7/Images/main/KabBuleleng.png"
+                        alt="Logo Kabupaten Buleleng" class="h-11 w-11 object-contain">
+
+                    <div class="flex flex-col leading-tight">
+
+                        <span class="text-[11px] font-semibold tracking-wide text-orange-500 sm:text-xs">
+                            PEMERINTAH KABUPATEN BULELENG
+                        </span>
+
+                        <span class="mt-1 text-sm font-bold text-slate-900 sm:text-base">
+                            Corpu Digital
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- DESKTOP MENU -->
+
+                <div class="hidden items-center gap-8 lg:flex">
+
+                    <a href="#home" class="nav-link active text-sm font-medium text-slate-700">
+                        Beranda
+                    </a>
+
+                    <a href="#about" class="nav-link text-sm font-medium text-slate-700">
+                        Tentang
+                    </a>
+
+                    <a href="#layanan" class="nav-link text-sm font-medium text-slate-700">
+                        Layanan
+                    </a>
+
+                    <a href="#alur" class="nav-link text-sm font-medium text-slate-700">
+                        Alur
+                    </a>
+
+                    <a href="#kontak" class="nav-link text-sm font-medium text-slate-700">
+                        Kontak
+                    </a>
+
+                    <a href="#kontak"
+                        class="rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 hover:from-blue-700 hover:to-indigo-700">
+                        Hubungi Kami
+                    </a>
+
                 </div>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#home">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
-                </ul>
+
+
+                <!-- MOBILE BUTTON -->
+
+                <button id="menuButton" type="button"
+                    class="rounded-xl border border-slate-200 p-2.5 text-slate-700 transition hover:bg-slate-50 lg:hidden"
+                    aria-label="Buka menu" aria-expanded="false">
+
+                    <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+
+                </button>
+
             </div>
+
+
+            <!-- MOBILE MENU -->
+
+            <div id="mobileMenu" class="max-h-0 overflow-hidden opacity-0 lg:hidden">
+
+                <div class="border-t border-slate-100 py-4">
+
+                    <div class="flex flex-col gap-1">
+
+                        <a href="#home"
+                            class="mobile-link rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50">
+                            Beranda
+                        </a>
+
+                        <a href="#about"
+                            class="mobile-link rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50">
+                            Tentang
+                        </a>
+
+                        <a href="#layanan"
+                            class="mobile-link rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50">
+                            Layanan
+                        </a>
+
+                        <a href="#alur"
+                            class="mobile-link rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50">
+                            Alur
+                        </a>
+
+                        <a href="#kontak"
+                            class="mobile-link rounded-xl px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50">
+                            Kontak
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
     </nav>
 
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
     <!-- HERO -->
-    <header id="home" class="hero">
-        <div class="container text-center">
-            <h1 class="display-5 fw-bold mb-0">Sistem Pembelajaran Terintegrasi</h1>
-            <h1 class="display-5 fw-bold gradient-text mb-0"><i>Corporate University</i></h1>
-            <p class="lead text-white-100 mt-3">Platform Terintegrasi Pengembangan Kompetensi ASN
-            </p>
-            <div class="d-flex justify-content-center gap-3 mt-4">
-                <a href="#layanan" class="btn btn-primary btn-lg">Lihat Program</a>
-                <a href="#about" class="btn btn-light btn-lg border border-primary text-primary">
-                    Tentang Kami
-                </a>
+    <header id="home" class="relative min-h-screen flex items-center overflow-hidden bg-cover bg-center bg-no-repeat"
+        style="background-image: url('https://raw.githubusercontent.com/purnamayasa7/Images/main/Corpu4.jpg');">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-slate-900/35 to-blue-900/10"></div>
+
+        <!-- Efek cahaya -->
+        <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-blue-400/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl"></div>
+
+        <div class="relative z-10 mx-auto w-full max-w-7xl px-6 py-32 lg:px-8">
+
+            <div class="grid items-center gap-14 lg:grid-cols-2">
+
+                <!-- KIRI -->
+                <div class="max-w-3xl">
+
+                    <!-- Badge -->
+                    <div
+                        class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-md">
+                        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                        Corporate University Kabupaten Buleleng
+                    </div>
+
+                    <!-- Judul -->
+                    <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+
+                        Sistem Pembelajaran
+                        <span
+                            class="block bg-gradient-to-r from-blue-300 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+                            Terintegrasi
+                        </span>
+
+                        <span class="mt-2 block text-3xl font-semibold italic text-white/90 sm:text-4xl lg:text-5xl">
+                            Corporate University
+                        </span>
+
+                    </h1>
+
+                    <!-- Deskripsi -->
+                    <p class="mt-6 max-w-2xl text-base leading-8 text-white/80 sm:text-lg">
+                        Platform terintegrasi untuk mendukung pengembangan kompetensi ASN
+                        Kabupaten Buleleng melalui perencanaan, pembelajaran,
+                        dan pengembangan karier yang berkelanjutan.
+                    </p>
+
+                    <!-- Button -->
+                    <div class="mt-8 flex flex-wrap gap-4">
+
+                        <a href="#layanan"
+                            class="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-3.5 font-semibold text-blue-700 shadow-xl shadow-black/10 transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                            Jelajahi Program
+
+                            <svg class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+
+                        <a href="#about"
+                            class="inline-flex items-center rounded-full border border-white/40 bg-white/10 px-7 py-3.5 font-semibold text-white backdrop-blur-md transition duration-300 hover:bg-white/20">
+                            Mengenal Corpu
+                        </a>
+
+                    </div>
+
+                    <!-- Feature -->
+                    <div class="mt-10 flex flex-wrap gap-x-8 gap-y-4 text-sm text-white/80">
+
+                        <div class="flex items-center gap-2">
+                            <svg class="h-5 w-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+
+                            Berbasis kebutuhan organisasi
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <svg class="h-5 w-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+
+                            Terintegrasi HCDP & IDP
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- KANAN -->
+                <div class="relative hidden lg:flex justify-center">
+
+                    <!-- Glow -->
+                    <div class="absolute inset-0 m-auto h-80 w-80 rounded-full bg-blue-400/30 blur-3xl"></div>
+
+                    <!-- Card -->
+                    <div
+                        class="relative w-full max-w-lg rounded-[2rem] border border-white/30 bg-white/10 p-3 shadow-2xl backdrop-blur-xl">
+
+                        <div class="rounded-[1.5rem] border border-white/10 bg-slate-900/70 p-7">
+
+                            <!-- Header -->
+                            <div class="flex items-center justify-between">
+
+                                <div>
+                                    <p class="text-sm font-medium text-blue-300">
+                                        CORPU DIGITAL
+                                    </p>
+
+                                    <h3 class="mt-2 text-2xl font-bold text-white">
+                                        Pengembangan ASN
+                                    </h3>
+                                </div>
+
+                                <div
+                                    class="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/20 text-blue-300">
+                                    <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                            d="M12 3L4 7l8 4 8-4-8-4z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                            d="M6 9v5c0 1.5 2.7 3 6 3s6-1.5 6-3V9" />
+                                    </svg>
+                                </div>
+
+                            </div>
+
+                            <!-- Progress -->
+                            <div class="mt-8">
+
+                                <div class="mb-2 flex justify-between text-sm">
+                                    <span class="text-white/50">
+                                        Pengembangan Kompetensi
+                                    </span>
+
+                                    <span class="font-semibold text-blue-300">
+                                        Terintegrasi
+                                    </span>
+                                </div>
+
+                                <div class="h-2 overflow-hidden rounded-full bg-white/10">
+
+                                    <div
+                                        class="h-full w-[85%] rounded-full bg-gradient-to-r from-blue-500 to-indigo-500">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- HCDP -->
+                            <div class="mt-8 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+
+                                <div
+                                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/20 text-lg font-bold text-blue-300">
+                                    H
+                                </div>
+
+                                <div class="flex-1">
+
+                                    <h4 class="font-bold text-white">
+                                        HCDP
+                                    </h4>
+
+                                    <p class="text-sm text-white/50">
+                                        Perencanaan kompetensi
+                                    </p>
+
+                                </div>
+
+                                <span class="text-sm font-semibold text-emerald-400">
+                                    Aktif
+                                </span>
+
+                            </div>
+
+                            <!-- IDP -->
+                            <div class="mt-3 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+
+                                <div
+                                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-indigo-500/20 text-lg font-bold text-indigo-300">
+                                    I
+                                </div>
+
+                                <div class="flex-1">
+
+                                    <h4 class="font-bold text-white">
+                                        IDP
+                                    </h4>
+
+                                    <p class="text-sm text-white/50">
+                                        Pengembangan individu
+                                    </p>
+
+                                </div>
+
+                                <span class="text-sm font-semibold text-emerald-400">
+                                    Aktif
+                                </span>
+
+                            </div>
+
+                            <!-- Learning -->
+                            <div class="mt-3 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+
+                                <div
+                                    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-lg font-bold text-emerald-300">
+                                    P
+                                </div>
+
+                                <div class="flex-1">
+
+                                    <h4 class="font-bold text-white">
+                                        Learning
+                                    </h4>
+
+                                    <p class="text-sm text-white/50">
+                                        Program pembelajaran
+                                    </p>
+
+                                </div>
+
+                                <span class="text-sm font-semibold text-emerald-400">
+                                    Aktif
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
     </header>
 
-    <!-- ABOUT -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <div class="row justify-content-center text-center mb-5">
-                <div class="col-lg-8">
-                    <h2 class="fw-bold">Tentang Corpu Digital</h2>
-                    <p class="text-muted mt-3"><i>Corporate University</i> Digital merupakan
-                        sistem terintegrasi untuk pengembangan kompetensi ASN melalui Human Capital Development Plan
-                        (HCDP) dan Individual Development Plan (IDP) yang selaras dengan kebutuhan organisasi, untuk
-                        meningkatkan kinerja dan pengembangan karier ASN secara berkelanjutan.
+
+    <!-- =========================================================
+         ABOUT
+    ========================================================== -->
+
+    <section id="about" class="relative overflow-hidden bg-white py-24 sm:py-28">
+
+        <div class="absolute -right-40 top-20 h-80 w-80 rounded-full bg-blue-50 blur-3xl"></div>
+
+        <div class="absolute -left-40 bottom-0 h-80 w-80 rounded-full bg-violet-50 blur-3xl"></div>
+
+
+        <div class="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
+            <div class="grid items-center gap-14 lg:grid-cols-2">
+
+                <!-- TEXT -->
+
+                <div class="reveal">
+
+                    <div class="mb-5 inline-flex rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
+                        Tentang Corpu Digital
+                    </div>
+
+                    <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                        Membangun ASN yang
+
+                        <span class="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                            adaptif dan kompeten.
+                        </span>
+                    </h2>
+
+                    <p class="mt-6 text-base leading-8 text-slate-600">
+                        <em>Corporate University</em> Digital merupakan
+                        sistem terintegrasi untuk pengembangan kompetensi ASN
+                        melalui pendekatan pembelajaran yang selaras dengan
+                        kebutuhan organisasi dan pengembangan individu.
                     </p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- LAYANAN -->
-    <section id="layanan" class="bg-light py-5">
-        <div class="container">
-            <div class="row text-center mb-5">
-                <div class="col">
-                    <h2 class="fw-bold">Program & Layanan</h2>
-                    <p class="text-muted">
-                        Layanan pengembangan kompetensi ASN berbasis kebutuhan organisasi dan rencana pengembangan
-                        individu
+                    <p class="mt-4 text-base leading-8 text-slate-600">
+                        Pendekatan ini menghubungkan
+                        <strong>Human Capital Development Plan (HCDP)</strong>
+                        dan
+                        <strong>Individual Development Plan (IDP)</strong>
+                        sehingga pengembangan kompetensi dapat dilakukan
+                        secara lebih terarah, terukur, dan berkelanjutan.
                     </p>
+
+
+                    <!-- Features -->
+
+                    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+
+                        <div class="flex gap-3">
+
+                            <div
+                                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-bold text-slate-900">
+                                    Terarah
+                                </h4>
+
+                                <p class="mt-1 text-sm leading-6 text-slate-500">
+                                    Berdasarkan kebutuhan kompetensi.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="flex gap-3">
+
+                            <div
+                                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <h4 class="font-bold text-slate-900">
+                                    Berkelanjutan
+                                </h4>
+
+                                <p class="mt-1 text-sm leading-6 text-slate-500">
+                                    Mendukung pengembangan karier ASN.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
+
+                <!-- VISUAL -->
+
+                <div class="reveal relative">
+
+                    <div class="absolute -inset-5 rounded-[32px] bg-gradient-to-r from-blue-100 to-violet-100 blur-2xl">
+                    </div>
+
+                    <div class="relative rounded-[28px] border border-slate-200 bg-white p-6 shadow-card sm:p-8">
+
+                        <div class="flex items-center justify-between">
+
+                            <div>
+
+                                <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                                    Framework
+                                </p>
+
+                                <h3 class="mt-2 text-xl font-bold text-slate-900">
+                                    Pengembangan ASN
+                                </h3>
+
+                            </div>
+
+                            <div
+                                class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 text-white shadow-lg shadow-blue-500/20">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mt-8 space-y-4">
+
+                            <div class="rounded-2xl border border-blue-100 bg-blue-50/60 p-5">
+
+                                <div class="flex items-center gap-4">
+
+                                    <div
+                                        class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 font-bold text-white">
+                                        H
+                                    </div>
+
+                                    <div>
+
+                                        <h4 class="font-bold text-slate-900">
+                                            HCDP
+                                        </h4>
+
+                                        <p class="text-sm text-slate-500">
+                                            Human Capital Development Plan
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex justify-center">
+
+                                <div
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 5v14m7-7l-7 7-7-7" />
+                                    </svg>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="rounded-2xl border border-violet-100 bg-violet-50/60 p-5">
+
+                                <div class="flex items-center gap-4">
+
+                                    <div
+                                        class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-600 font-bold text-white">
+                                        I
+                                    </div>
+
+                                    <div>
+
+                                        <h4 class="font-bold text-slate-900">
+                                            IDP
+                                        </h4>
+
+                                        <p class="text-sm text-slate-500">
+                                            Individual Development Plan
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex justify-center">
+
+                                <div
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 5v14m7-7l-7 7-7-7" />
+                                    </svg>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-5">
+
+                                <div class="flex items-center gap-4">
+
+                                    <div
+                                        class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600 font-bold text-white">
+                                        L
+                                    </div>
+
+                                    <div>
+
+                                        <h4 class="font-bold text-slate-900">
+                                            Learning
+                                        </h4>
+
+                                        <p class="text-sm text-slate-500">
+                                            Pembelajaran & pengembangan kompetensi
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="row g-4">
-
-                <!-- Pelatihan -->
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <div class="feature-icon bg-primary text-white rounded-3 mb-3 mx-auto">
-                                <i class="bi bi-mortarboard fs-3"></i>
-                            </div>
-                            <h5 class="fw-bold">Program Pembelajaran ASN</h5>
-                            <p class="text-muted">
-                                Penyelenggaraan program pembelajaran berbasis Corporate University melalui metode
-                                pembelajaran formal, social learning, dan experiential learning untuk memenuhi kebutuhan
-                                kompetensi ASN sesuai HCDP dan IDP.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HCDP -->
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <div class="feature-icon bg-primary text-white rounded-3 mb-3 mx-auto">
-                                <i class="bi bi-diagram-3 fs-3"></i>
-                            </div>
-                            <h5 class="fw-bold">Perencanaan Pengembangan Kompetensi (HCDP)</h5>
-                            <p class="text-muted">
-                                Penyusunan Human Capital Development Plan sebagai dasar perencanaan strategis
-                                pengembangan kompetensi ASN yang selaras dengan sasaran kinerja dan prioritas
-                                organisasi.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- IDP -->
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <div class="feature-icon bg-primary text-white rounded-3 mb-3 mx-auto">
-                                <i class="bi bi-graph-up-arrow fs-3"></i>
-                            </div>
-                            <h5 class="fw-bold">Pengembangan Karier & IDP ASN</h5>
-                            <p class="text-muted">
-                                Fasilitasi penyusunan Individual Development Plan (IDP) sebagai rencana pengembangan
-                                kompetensi individu ASN berdasarkan analisis kesenjangan kompetensi untuk mendukung
-                                pengembangan karier dan manajemen talenta.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
+
     </section>
 
-    <!-- KONTAK -->
-    <section id="kontak" class="py-5">
-        <div class="container">
-            <div class="row justify-content-center text-center mb-4">
-                <div class="col-lg-6">
-                    <h2 class="fw-bold">Hubungi Kami</h2>
-                    <p class="text-muted">Silakan hubungi kami untuk informasi lebih lanjut</p>
+
+    <!-- =========================================================
+         SERVICES
+    ========================================================== -->
+
+    <section id="layanan" class="relative overflow-hidden bg-slate-50 py-24 sm:py-28">
+
+        <div class="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-100/50 blur-3xl"></div>
+
+
+        <div class="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
+            <!-- HEADER -->
+
+            <div class="reveal mx-auto max-w-3xl text-center">
+
+                <div class="mb-5 inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+                    Program & Layanan
                 </div>
+
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                    Ekosistem pengembangan kompetensi ASN
+                </h2>
+
+                <p class="mt-5 text-base leading-8 text-slate-600 sm:text-lg">
+                    Menghubungkan kebutuhan organisasi dengan pengembangan
+                    kompetensi individu melalui pendekatan Corporate University.
+                </p>
+
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="card shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="mb-3">
-                                <label class="form-label">Nama</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Pesan</label>
-                                <textarea class="form-control" rows="4"></textarea>
-                            </div>
-                            <button class="btn btn-primary w-100">Kirim Pesan</button>
-                        </div>
+
+
+            <!-- CARDS -->
+
+            <div class="mt-14 grid gap-6 md:grid-cols-3">
+
+                <!-- CARD 1 -->
+
+                <article class="service-card reveal rounded-[28px] border border-slate-200 bg-white p-7 shadow-soft">
+
+                    <div
+                        class="icon-box flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-lg shadow-blue-500/20">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="1.7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12v5a7 7 0 0014 0v-5" />
+                        </svg>
+
                     </div>
-                </div>
+
+                    <h3 class="mt-7 text-xl font-bold text-slate-900">
+                        Program Pembelajaran ASN
+                    </h3>
+
+                    <p class="mt-4 text-sm leading-7 text-slate-600">
+                        Penyelenggaraan program pembelajaran berbasis
+                        Corporate University melalui pembelajaran formal,
+                        social learning, dan experiential learning.
+                    </p>
+
+                    <div class="mt-6 flex items-center gap-2 text-sm font-semibold text-blue-600">
+                        Pembelajaran ASN
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 2 -->
+
+                <article class="service-card reveal rounded-[28px] border border-slate-200 bg-white p-7 shadow-soft">
+
+                    <div
+                        class="icon-box flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-purple-700 text-white shadow-lg shadow-violet-500/20">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="1.7">
+                            <circle cx="6" cy="6" r="2.5" />
+                            <circle cx="18" cy="6" r="2.5" />
+                            <circle cx="12" cy="18" r="2.5" />
+
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.2 7.2l2.5 8M15.8 7.2l-2.5 8M8.5 6h7" />
+                        </svg>
+
+                    </div>
+
+                    <h3 class="mt-7 text-xl font-bold text-slate-900">
+                        Perencanaan Kompetensi
+                    </h3>
+
+                    <p class="mt-4 text-sm leading-7 text-slate-600">
+                        Penyusunan Human Capital Development Plan sebagai
+                        dasar perencanaan strategis pengembangan kompetensi
+                        ASN sesuai sasaran dan prioritas organisasi.
+                    </p>
+
+                    <div class="mt-6 flex items-center gap-2 text-sm font-semibold text-violet-600">
+                        Human Capital Development Plan
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 3 -->
+
+                <article class="service-card reveal rounded-[28px] border border-slate-200 bg-white p-7 shadow-soft">
+
+                    <div
+                        class="icon-box flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="1.7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5" />
+
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 19h16" />
+
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 15l3-3 3 2 5-6" />
+                        </svg>
+
+                    </div>
+
+                    <h3 class="mt-7 text-xl font-bold text-slate-900">
+                        Pengembangan Karier ASN
+                    </h3>
+
+                    <p class="mt-4 text-sm leading-7 text-slate-600">
+                        Fasilitasi Individual Development Plan sebagai rencana
+                        pengembangan kompetensi berdasarkan kesenjangan
+                        kompetensi dan kebutuhan karier ASN.
+                    </p>
+
+                    <div class="mt-6 flex items-center gap-2 text-sm font-semibold text-emerald-600">
+                        Individual Development Plan
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+
+                    </div>
+
+                </article>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <small>© 2026 Corpu ASN Kabupaten Buleleng</small>
+
+    <!-- =========================================================
+         FLOW
+    ========================================================== -->
+
+    <section id="alur" class="bg-white py-24 sm:py-28">
+
+        <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
+            <div class="reveal mx-auto max-w-3xl text-center">
+
+                <div class="mb-5 inline-flex rounded-full bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700">
+                    Alur Pengembangan
+                </div>
+
+                <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                    Dari kebutuhan menjadi pengembangan
+                </h2>
+
+                <p class="mt-5 text-base leading-8 text-slate-600">
+                    Pendekatan terintegrasi untuk memastikan pengembangan
+                    kompetensi ASN tetap selaras dengan kebutuhan organisasi.
+                </p>
+
+            </div>
+
+
+            <div class="relative mt-16">
+
+                <!-- Connector desktop -->
+
+                <div
+                    class="absolute left-[16%] right-[16%] top-8 hidden h-px bg-gradient-to-r from-blue-200 via-violet-200 to-emerald-200 lg:block">
+                </div>
+
+
+                <div class="grid gap-10 lg:grid-cols-4">
+
+                    <!-- STEP 1 -->
+
+                    <div class="reveal relative text-center">
+
+                        <div
+                            class="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 font-bold text-white shadow-xl shadow-blue-500/20">
+                            01
+                        </div>
+
+                        <h3 class="mt-6 font-bold text-slate-900">
+                            Identifikasi
+                        </h3>
+
+                        <p class="mt-2 text-sm leading-6 text-slate-500">
+                            Mengidentifikasi kebutuhan dan kesenjangan kompetensi.
+                        </p>
+
+                    </div>
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="reveal relative text-center">
+
+                        <div
+                            class="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-600 font-bold text-white shadow-xl shadow-violet-500/20">
+                            02
+                        </div>
+
+                        <h3 class="mt-6 font-bold text-slate-900">
+                            Perencanaan
+                        </h3>
+
+                        <p class="mt-2 text-sm leading-6 text-slate-500">
+                            Menyusun HCDP dan IDP sebagai dasar pengembangan.
+                        </p>
+
+                    </div>
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="reveal relative text-center">
+
+                        <div
+                            class="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-600 font-bold text-white shadow-xl shadow-indigo-500/20">
+                            03
+                        </div>
+
+                        <h3 class="mt-6 font-bold text-slate-900">
+                            Pembelajaran
+                        </h3>
+
+                        <p class="mt-2 text-sm leading-6 text-slate-500">
+                            Melaksanakan program pembelajaran yang sesuai kebutuhan.
+                        </p>
+
+                    </div>
+
+
+                    <!-- STEP 4 -->
+
+                    <div class="reveal relative text-center">
+
+                        <div
+                            class="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-600 font-bold text-white shadow-xl shadow-emerald-500/20">
+                            04
+                        </div>
+
+                        <h3 class="mt-6 font-bold text-slate-900">
+                            Evaluasi
+                        </h3>
+
+                        <p class="mt-2 text-sm leading-6 text-slate-500">
+                            Mengevaluasi hasil dan dampak pengembangan kompetensi.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CTA
+    ========================================================== -->
+
+    <section class="px-5 pb-24 sm:px-6 lg:px-8">
+
+        <div
+            class="relative mx-auto max-w-7xl overflow-hidden rounded-[32px] bg-gradient-to-r from-blue-700 via-indigo-700 to-violet-700 px-7 py-14 shadow-2xl shadow-blue-900/20 sm:px-12 sm:py-16">
+
+            <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl"></div>
+
+            <div class="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-blue-300/10 blur-3xl"></div>
+
+
+            <div class="relative z-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+
+                <div class="max-w-2xl">
+
+                    <p class="text-sm font-semibold uppercase tracking-widest text-blue-200">
+                        Corpu Digital
+                    </p>
+
+                    <h2 class="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
+                        Bersama membangun ASN yang terus berkembang.
+                    </h2>
+
+                    <p class="mt-4 leading-7 text-blue-100">
+                        Pengembangan kompetensi bukan sekadar pelatihan,
+                        tetapi bagian dari strategi membangun organisasi
+                        pembelajar.
+                    </p>
+
+                </div>
+
+
+                <a href="#kontak"
+                    class="shrink-0 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-blue-700 shadow-xl transition hover:-translate-y-1 hover:bg-blue-50">
+                    Hubungi Kami
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CONTACT
+    ========================================================== -->
+
+    <section id="kontak" class="border-t border-slate-100 bg-slate-50 py-24 sm:py-28">
+
+        <div class="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
+            <div class="grid gap-14 lg:grid-cols-[.8fr_1.2fr]">
+
+                <!-- CONTACT INFO -->
+
+                <div class="reveal">
+
+                    <div
+                        class="mb-5 inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+                        Hubungi Kami
+                    </div>
+
+                    <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                        Mari terhubung dengan Corpu Digital.
+                    </h2>
+
+                    <p class="mt-5 leading-8 text-slate-600">
+                        Silakan hubungi kami untuk mendapatkan informasi
+                        lebih lanjut mengenai program dan layanan pengembangan
+                        kompetensi ASN.
+                    </p>
+
+
+                    <div class="mt-8 space-y-5">
+
+                        <div class="flex items-start gap-4">
+
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 21s7-4.5 7-10a7 7 0 10-14 0c0 5.5 7 10 7 10z" />
+
+                                    <circle cx="12" cy="11" r="2.5" />
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <p class="font-semibold text-slate-900">
+                                    Pemerintah Kabupaten Buleleng
+                                </p>
+
+                                <p class="mt-1 text-sm leading-6 text-slate-500">
+                                    Kabupaten Buleleng, Bali
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="flex items-start gap-4">
+
+                            <div
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6" />
+
+                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <p class="font-semibold text-slate-900">
+                                    Informasi
+                                </p>
+
+                                <p class="mt-1 text-sm leading-6 text-slate-500">
+                                    Silakan gunakan formulir untuk pertanyaan
+                                    atau informasi lebih lanjut.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <div class="reveal">
+
+                    <form class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-soft sm:p-8"
+                        onsubmit="return false;">
+
+                        <div class="grid gap-5 sm:grid-cols-2">
+
+                            <div class="sm:col-span-1">
+
+                                <label for="nama" class="mb-2 block text-sm font-semibold text-slate-700">
+                                    Nama
+                                </label>
+
+                                <input id="nama" type="text" placeholder="Nama lengkap"
+                                    class="form-input w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400">
+
+                            </div>
+
+
+                            <div class="sm:col-span-1">
+
+                                <label for="email" class="mb-2 block text-sm font-semibold text-slate-700">
+                                    Email
+                                </label>
+
+                                <input id="email" type="email" placeholder="nama@email.com"
+                                    class="form-input w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400">
+
+                            </div>
+
+
+                            <div class="sm:col-span-2">
+
+                                <label for="pesan" class="mb-2 block text-sm font-semibold text-slate-700">
+                                    Pesan
+                                </label>
+
+                                <textarea id="pesan" rows="5" placeholder="Tuliskan pesan Anda..."
+                                    class="form-input w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400"></textarea>
+
+                            </div>
+
+
+                            <div class="sm:col-span-2">
+
+                                <button type="submit"
+                                    class="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 hover:from-blue-700 hover:to-indigo-700">
+
+                                    Kirim Pesan
+
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5 transition group-hover:translate-x-1" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13" />
+
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M22 2l-7 20-4-9-9-4 20-7z" />
+                                    </svg>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="bg-slate-950 text-slate-300">
+
+        <div class="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
+
+            <div class="grid gap-10 md:grid-cols-2">
+
+                <!-- BRAND -->
+
+                <div>
+
+                    <div class="flex items-center gap-3">
+
+                        <img src="https://raw.githubusercontent.com/purnamayasa7/Images/main/KabBuleleng.png"
+                            alt="Logo Kabupaten Buleleng" class="h-11 w-11 object-contain">
+
+                        <div>
+
+                            <p class="text-xs font-semibold text-orange-400">
+                                PEMERINTAH KABUPATEN BULELENG
+                            </p>
+
+                            <p class="mt-1 font-bold text-white">
+                                Corpu Digital
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <p class="mt-5 max-w-md text-sm leading-7 text-slate-400">
+                        Platform terintegrasi pengembangan kompetensi ASN
+                        melalui pendekatan Corporate University.
+                    </p>
+
+                </div>
+
+
+                <!-- QUICK LINKS -->
+
+                <div class="md:text-right">
+
+                    <p class="font-semibold text-white">
+                        Navigasi
+                    </p>
+
+                    <div class="mt-4 flex flex-wrap gap-x-6 gap-y-3 md:justify-end">
+
+                        <a href="#home" class="text-sm text-slate-400 transition hover:text-white">
+                            Beranda
+                        </a>
+
+                        <a href="#about" class="text-sm text-slate-400 transition hover:text-white">
+                            Tentang
+                        </a>
+
+                        <a href="#layanan" class="text-sm text-slate-400 transition hover:text-white">
+                            Layanan
+                        </a>
+
+                        <a href="#alur" class="text-sm text-slate-400 transition hover:text-white">
+                            Alur
+                        </a>
+
+                        <a href="#kontak" class="text-sm text-slate-400 transition hover:text-white">
+                            Kontak
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="mt-10 border-t border-white/10 pt-6 text-center">
+
+                <p class="text-xs text-slate-500">
+                    © 2026 Corpu ASN Kabupaten Buleleng.
+                    Seluruh hak cipta dilindungi.
+                </p>
+
+            </div>
+
+        </div>
+
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const navbar = document.querySelector(".navbar-corpu");
-        const navLinks = document.querySelectorAll(".nav-link");
-        const sections = document.querySelectorAll("section");
-        window.addEventListener("scroll", function () {
-            navbar.classList.toggle("scrolled", window.scrollY > 50);
-            let current = "home";
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 120;
-                if (window.scrollY >= sectionTop) { current = section.getAttribute("id"); }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove("active");
-                if (link.getAttribute("href") === "#" + current) { link.classList.add("active"); }
-            });
-        });
-        navLinks.forEach(link => {
-            link.addEventListener("click", function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute("href"));
-                const offset = 80;
-                const top = target.offsetTop - offset;
-                window.scrollTo({ top: top, behavior: "smooth" });
-            });
-        });
-    </script>
 
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        /* ============================================
+           NAVBAR SCROLL
+        ============================================ */
+
+        const navbar = document.getElementById('navbar');
+
+        function updateNavbar() {
+
+            if (window.scrollY > 30) {
+
+                navbar.classList.add('scrolled');
+
+            } else {
+
+                navbar.classList.remove('scrolled');
+
+            }
+
+        }
+
+        window.addEventListener('scroll', updateNavbar);
+
+        updateNavbar();
+
+
+        /* ============================================
+           MOBILE MENU
+        ============================================ */
+
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        let menuOpen = false;
+
+        menuButton.addEventListener('click', function () {
+
+            menuOpen = !menuOpen;
+
+            menuButton.setAttribute(
+                'aria-expanded',
+                menuOpen
+            );
+
+            if (menuOpen) {
+
+                mobileMenu.style.maxHeight =
+                    mobileMenu.scrollHeight + 'px';
+
+                mobileMenu.style.opacity = '1';
+
+            } else {
+
+                mobileMenu.style.maxHeight = '0px';
+
+                mobileMenu.style.opacity = '0';
+
+            }
+
+        });
+
+
+        mobileLinks.forEach(link => {
+
+            link.addEventListener('click', function () {
+
+                menuOpen = false;
+
+                mobileMenu.style.maxHeight = '0px';
+
+                mobileMenu.style.opacity = '0';
+
+                menuButton.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
+
+            });
+
+        });
+
+
+        /* ============================================
+           ACTIVE NAVIGATION
+        ============================================ */
+
+        const sections = document.querySelectorAll('header[id], section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveNavigation() {
+
+            const scrollPosition =
+                window.scrollY + 160;
+
+            let current = 'home';
+
+            sections.forEach(section => {
+
+                if (
+                    scrollPosition >= section.offsetTop &&
+                    scrollPosition <
+                    section.offsetTop + section.offsetHeight
+                ) {
+
+                    current = section.id;
+
+                }
+
+            });
+
+            navLinks.forEach(link => {
+
+                link.classList.remove('active');
+
+                if (
+                    link.getAttribute('href') === '#' + current
+                ) {
+
+                    link.classList.add('active');
+
+                }
+
+            });
+
+        }
+
+        window.addEventListener(
+            'scroll',
+            updateActiveNavigation
+        );
+
+        updateActiveNavigation();
+
+
+        /* ============================================
+           SCROLL REVEAL
+        ============================================ */
+
+        const revealElements =
+            document.querySelectorAll('.reveal');
+
+        const revealObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add('show');
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+        revealElements.forEach(element => {
+
+            revealObserver.observe(element);
+
+        });
+
+
+        /* ============================================
+           SMOOTH SCROLL
+        ============================================ */
+
+        document.querySelectorAll(
+            'a[href^="#"]'
+        ).forEach(link => {
+
+            link.addEventListener(
+                'click',
+                function (event) {
+
+                    const targetId =
+                        this.getAttribute('href');
+
+                    if (
+                        targetId === '#' ||
+                        !document.querySelector(targetId)
+                    ) {
+
+                        return;
+
+                    }
+
+                    event.preventDefault();
+
+                    const target =
+                        document.querySelector(targetId);
+
+                    const offset = 76;
+
+                    const targetPosition =
+                        target.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        offset;
+
+                    window.scrollTo({
+
+                        top: targetPosition,
+
+                        behavior: 'smooth'
+
+                    });
+
+                }
+            );
+
+        });
+
+    </script>
 
 </body>
 
